@@ -9,7 +9,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MemoryMemberRepositoryTest {
+class MemoryMemberRepositoryTest { // test 이외에 다른 곳에서 사용하지 않으므로 public일 필요가 없다.
     MemoryMemberRepository repository = new MemoryMemberRepository();
 
     @AfterEach
@@ -21,8 +21,11 @@ public class MemoryMemberRepositoryTest {
     public void save() {
         Member member = new Member();
         member.setName("Spring");
+
         repository.save(member);
+
         Member result = repository.findById(member.getId()).get();
+
         //Assertions.assertEquals(member, result);
         assertThat(member).isEqualTo(result);
     }
@@ -38,6 +41,7 @@ public class MemoryMemberRepositoryTest {
         repository.save(member2);
 
         Member result = repository.findByName("spring2").get();
+
         assertThat(result).isEqualTo(member2);
     }
 
